@@ -5,18 +5,27 @@ body {
   font-family: 'Rajdhani', sans-serif;
 }
 
+h1 {
+  font-size: 3em;
+}
+
+
+ol li {
+  font-size: 1.25em;
+}
 
 label {
-  font-size: 1.25em;
+  font-size: 1.5em;
 }
 
 select {
   font-family: sans-serif;;
 }
 
-button {
+.btn {
   font-size: 1.25em;
 }
+
 
 /*****************
 LAYOUT
@@ -35,9 +44,12 @@ body {
 }
 
 #header {
-  width: 30%;
+  width: 20%;
   margin: 0 auto;
-  margin-bottom: 5%;
+  margin-bottom: 2.5%;
+  border-radius: 100%;
+  text-align: center;
+
 }
 
 .form-group {
@@ -48,6 +60,7 @@ body {
 
 input {
   display: block;
+  width: 20%;
   margin-bottom: 3%;
 }
 
@@ -72,6 +85,10 @@ COLOR
 
 body {
   background-color: #27a798;
+}
+
+#brown {
+  background-color: 	#903737;
 }
 
 .well {
