@@ -7,35 +7,43 @@ var validateInput = function(number) {
   }
 };
 
-var numberScope = function(number) {
-  if (number <= number) {
-    return number
-  }
-};
-
 // rule for ping
-var three = function(number) {
-  if (number % 3 == 0) {
-  return alert("ping");
-  } else {
-    return number
-  }
-};
+
 // rule for pong
-var five = function(number) {
-  if (number % 5 == 0) {
-  return alert("pong");
+// var three = function(number) {
+//   if (number % 3 == 0) {
+//   return alert("ping");
+//   } else {
+//     return number
+//   }
+// };
+// // // rule for ping-pong
+// var five = function(number) {
+//   if (number % 5 == 0){
+//   return alert("pong");
+//   } else {
+//     return number
+//   }
+// };
+// var allThree = function(number) {
+//   if ((number % 3 == 0) && (number % 5 == 0)) {
+//   return alert("ping-pong");
+//   } else {
+//     return number
+//   }
+// };
+var pingPong = function(number) {
+  if ((number % 3 == 0) && (number % 5 == 0)) {
+    return alert("ping-pong");
+  } else if (number % 5 == 0) {
+    return alert("pong");
+  } else if (number % 3 == 0) {
+    return alert("ping");
   } else {
-    return number
+    return number;
   }
 };
-// rule for ping-pong
 
-
-
-// var numberSplitter = function(number) {
-//   return verified.split("").map(function(t){return parseInt(t)});
-// }
 
 
 
@@ -45,9 +53,9 @@ $(document).ready(function() {
     event.preventDefault();
     var number = parseInt($("input#number").val());
     var verified = validateInput(number);
-
-    var ping = three(number);
-    var pong = five(number);
+    // var ping = three(number);
+    // var pong = five(number);
+    var game = pingPong(number);
     // var numbers = numberSplitter(verified);
     // console.log(validateInput);
     // $(".number").text(number);
