@@ -32,7 +32,7 @@ _{
 
 ## Setup/Installation Requirements
 
-* _Clone github repository for pig-latin webpage_
+* _Clone github repository for ping-pong webpage_
 * _Open index.html in web browser window_
 
 ## Known Bugs
