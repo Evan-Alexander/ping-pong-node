@@ -22,6 +22,13 @@ var three = function(number) {
   }
 };
 // rule for pong
+var five = function(number) {
+  if (number % 5 == 0) {
+  return alert("pong");
+  } else {
+    return number
+  }
+};
 // rule for ping-pong
 
 
@@ -38,8 +45,9 @@ $(document).ready(function() {
     event.preventDefault();
     var number = parseInt($("input#number").val());
     var verified = validateInput(number);
-    
+
     var ping = three(number);
+    var pong = five(number);
     // var numbers = numberSplitter(verified);
     // console.log(validateInput);
     // $(".number").text(number);
