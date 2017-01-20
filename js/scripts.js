@@ -1,4 +1,4 @@
-// validates user input as a number
+// validates user input as a number and an integer.
 var validateInput = function(number) {
   if (isNaN(number) || (number % 1 !== 0)) {
   return alert("Please enter an integer, starting with 1.");
@@ -7,13 +7,23 @@ var validateInput = function(number) {
   }
 };
 
-// var integer = function(number) {
-//   if (number % 1 !== 0) {
-//   return alert("Please enter a whole number")
-//   } else {
-//     return number
-//   }
-// };
+var numberScope = function(number) {
+  if (number <= number) {
+    return number
+  }
+};
+
+// rule for ping
+var three = function(number) {
+  if (number % 3 == 0) {
+  return alert("ping");
+  } else {
+    return number
+  }
+};
+// rule for pong
+// rule for ping-pong
+
 
 
 // var numberSplitter = function(number) {
@@ -26,11 +36,16 @@ var validateInput = function(number) {
 $(document).ready(function() {
   $("form#game").submit(function(event) {
     event.preventDefault();
-    var number = $("input#number").val();
+    var number = parseInt($("input#number").val());
     var verified = validateInput(number);
-    var wholeNumber = integer(number);
+    
+    var ping = three(number);
     // var numbers = numberSplitter(verified);
     // console.log(validateInput);
+    // $(".number").text(number);
+    // $(".roman").text(result);
+    //
+    // $("#result").show();
   });
 });
     // var numbers = numberSplitter(verified);
@@ -42,7 +57,3 @@ $(document).ready(function() {
 //   console.log(thousandsPlace + hundredsPlace + tensPlace + onesPlace);
   //  var result = roman(thousandsPlace, hundredsPlace, tensPlace, onesPlace);
   //  console.log(result);
-    // $(".number").text(number);
-    // $(".roman").text(result);
-    //
-    // $("#result").show();
