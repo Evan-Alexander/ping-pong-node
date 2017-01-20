@@ -1,5 +1,7 @@
 #_{Ping-Pong}_
 
+* _A program that collects user input and based on rules, may return the output of "ping", "pong", or "ping-pong"._
+
 ####_(), (January 20, 2017)_
 
 #### By _**{Jason Brown}**
@@ -8,8 +10,8 @@
 
 _{
   subject:
-  spec 1:
-  spec 2:
+  spec 1: Verify if the input is a number. Input: horse. Output: "Please choose a number".
+  spec 2: Return a number between 1 and input number.
   spec 3:
   spec 4:
   spec 5:
