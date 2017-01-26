@@ -28,9 +28,6 @@ $(document).ready(function() {
     var list = numberList(number);
     console.log(list);
 
-
-    // $(".number").text(game);
-
-    $(".number").text(list);
+    $("#result").text(number);
   });
 });
