@@ -1,6 +1,6 @@
-#_{Ping-Pong}_
+# Ping-Pong
 
-* _A program that collects user input and based on rules, may return the output of "ping", "pong", or "ping-pong"._
+* A program that collects user input and based on rules, may return the output of "ping", "pong", or "ping-pong".
 
 ####_(), (January 20, 2017)_
 
@@ -15,7 +15,7 @@ _{
   Output: "Please choose a number".
   spec 2: Return a number between 1 and input number.  
   Input: 5
-  Output: Any number between 1-5
+  Output: 1, 2, 3, 4, 5
   spec 3: If input is % by 3, return "ping".
   Input: 6
   Output: "ping"
@@ -32,8 +32,8 @@ _{
 
 ## Setup/Installation Requirements
 
-* _Clone github repository for ping-pong webpage_
-* _Open index.html in web browser window_
+*  Clone github repository for ping-pong webpage
+*  Open index.html in web browser window_
 
 ## Known Bugs
 _No known bugs exist._
