@@ -2,25 +2,25 @@
 
 * A program that collects user input and based on rules, may return the output of "ping", "pong", or "ping-pong".
 
-#### January 25, 2017
+#### January 28, 2017
 
 #### By **Jason Brown**
 
 ## Description
 
 * Specifications:
-*  Spec1: User enters a number, hits 'submit' button.  Program * returns a list of numbers between 1 and input number.  
- Input: 5
- Output: 1, 2, 3, 4, 5
-*  Spec 2: If input is % by 3, return "ping".
- Input: 6
- Output: "ping"
-*  Spec 3: If input is % by 5, return "pong".
- Input: 10
- Output: "pong"
-*  Spec 4: If input is % by 15, return "ping-pong".
- Input: 30
- Output: "ping-pong"
+* Spec1: User enters a number, hits 'submit' button.  Program returns a list of numbers between 1 and input number.  
+* Input: 5
+* Output: 1, 2, 3, 4, 5
+* Spec 2: If input is % by 3, return "ping".
+* Input: 6
+* Output: "ping"
+* Spec 3: If input is % by 5, return "pong".
+* Input: 10
+* Output: "pong"
+* Spec 4: If input is % by 15, return "ping-pong".
+* Input: 30
+* Output: "ping-pong"
 
 
 
