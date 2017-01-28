@@ -1,11 +1,12 @@
 
+var pingArray = [];
 
 function pingPong() {
-  var pingArray = [];
-  for ( i = 1; i <= number; i++) {
+  for ( i = 0; i <= number; i++ ) {
+    console.log(pingArray);
+
     if (i % 15 === 0) {
       pingArray.push("ping-pong");
-      console.log(pingArray);
     } else if (i % 5 === 0) {
       pingArray.push("pong");
     } else if (i % 3 === 0) {
@@ -14,7 +15,7 @@ function pingPong() {
       pingArray.push(i);
     }
   }
-  // return pingArray;
+  return pingArray;
 }
 
 
@@ -29,7 +30,7 @@ $(document).ready(function() {
       $("#result").append(i + ', ');
       console.log(i);
     }
-    $("#result").show(display);
+    $("#result").show(pingArray);
     // $("#result").text(number1);
   });
 });
