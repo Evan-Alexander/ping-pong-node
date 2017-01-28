@@ -2,13 +2,19 @@
 
 function pingPong() {
   var pingArray = [];
-  for (var i =1; i <= number; i++) {
+  for ( i = 1; i <= number; i++) {
     if (i % 15 === 0) {
-      pingArray.push("ping-pong")
-
+      pingArray.push("ping-pong");
+      console.log(pingArray);
+    } else if (i % 5 === 0) {
+      pingArray.push("pong");
+    } else if (i % 3 === 0) {
+      pingArray.push("ping");
+    } else {
+      pingArray.push(i);
     }
   }
-  return pingArray
+  // return pingArray;
 }
 
 
@@ -23,7 +29,7 @@ $(document).ready(function() {
       $("#result").append(i + ', ');
       console.log(i);
     }
-    $("#result").show(i);
+    $("#result").show(display);
     // $("#result").text(number1);
   });
 });
