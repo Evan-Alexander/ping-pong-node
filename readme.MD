@@ -13,14 +13,14 @@
 * Input: 5
 * Output: 1, 2, 3, 4, 5
 * Spec 2: If input is % by 3, return "ping".
-* Input: 6
-* Output: "ping"
+* Input: 3
+* Output: 1, 2, "ping"
 * Spec 3: If input is % by 5, return "pong".
-* Input: 10
-* Output: "pong"
+* Input: 5
+* Output: 1, 2, "ping", 4, "pong"
 * Spec 4: If input is % by 15, return "ping-pong".
-* Input: 30
-* Output: "ping-pong"
+* Input: 15
+* Output: 1, 2, "ping", 4, "pong", "ping", 7, 8, "ping", "pong", 11, "ping", 13, 14, "ping-pong"
 
 
 
