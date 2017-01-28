@@ -1,7 +1,7 @@
 
-var pingArray = [];
 
 function pingPong(number1) {
+  var pingArray = [];
   for ( i = 1; i <= number1; i++ ) {
     if (i % 15 === 0) {
       pingArray.push("ping-pong");
@@ -23,10 +23,9 @@ $(document).ready(function() {
     event.preventDefault();
     var number1 = parseInt($("#number").val());
     var display = pingPong(number1);
-    for(i = 0; i <= number1; i++) {
-      $("#result").append(i + ', ');
-      console.log(i);
-    }
-    $("#result").show(i);
+    $("#result").append(display + ', ');
+    console.log(display);
+
+    $("#result").show();
   });
 });
