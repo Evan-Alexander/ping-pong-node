@@ -1,10 +1,8 @@
 
 var pingArray = [];
 
-function pingPong() {
-  for ( i = 0; i <= number; i++ ) {
-    console.log(pingArray);
-
+function pingPong(pingArray) {
+  for ( i = 1; i <= number; i++ ) {
     if (i % 15 === 0) {
       pingArray.push("ping-pong");
     } else if (i % 5 === 0) {
@@ -15,22 +13,20 @@ function pingPong() {
       pingArray.push(i);
     }
   }
+  console.log(pingArray);
+
   return pingArray;
 }
-
-
-
 
 $(document).ready(function() {
   $("form#game").submit(function(event) {
     event.preventDefault();
     var number1 = parseInt($("#number").val());
     var display = pingPong(number1);
-    for(i = 0; i < number1; i++) {
+    for(i = 0; i <= number1; i++) {
       $("#result").append(i + ', ');
       console.log(i);
     }
     $("#result").show(pingArray);
-    // $("#result").text(number1);
   });
 });
