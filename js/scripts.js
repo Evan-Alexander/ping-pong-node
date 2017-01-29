@@ -19,13 +19,19 @@ function pingPong(number1) {
 }
 
 $(document).ready(function() {
-  $("form#game").submit(function(event) {
+  $("form#game").last().submit(function(event) {
     event.preventDefault();
     var number1 = parseInt($("#number").val());
     var display = pingPong(number1);
-    $("#result").append(display + ',');
+    $("#result").text(display + ',');
     console.log(display);
 
     $("#result").show();
+    $("#number").val("");
   });
 });
+
+//
+// $("form#game").last().submit(function() {
+//   $("#result").show();
+// });
