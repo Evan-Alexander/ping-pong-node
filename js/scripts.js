@@ -19,7 +19,7 @@ function pingPong(number1) {
 }
 
 $(document).ready(function() {
-  $("form#game").submit(function(event) {
+  $("form#game").last().submit(function(event) {
     event.preventDefault();
     var number1 = parseInt($("#number").val());
     var display = pingPong(number1);
@@ -27,5 +27,7 @@ $(document).ready(function() {
     console.log(display);
 
     $("#result").show();
+    $("#number").val("");
+
   });
 });
