@@ -23,11 +23,15 @@ $(document).ready(function() {
     event.preventDefault();
     var number1 = parseInt($("#number").val());
     var display = pingPong(number1);
-    $("#result").append(display + ',');
+    $("#result").text(display + ',');
     console.log(display);
 
     $("#result").show();
     $("#number").val("");
-
   });
 });
+
+//
+// $("form#game").last().submit(function() {
+//   $("#result").show();
+// });
