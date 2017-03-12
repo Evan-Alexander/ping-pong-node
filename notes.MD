@@ -82,7 +82,7 @@ Use object literal notation:
 npm install gulp --save-dev
 
 --BROWSERIFY--
-# Browserify is responsible for translating "require" and "exports" keywords provided by Node to the browser.  Otherwise the browser wouln't recognize the keywords.
+# Browserify is responsible for translating "require" and "exports" keywords provided by Node to the browser.  Otherwise the browser doesn't recognize these keywords.
 
 # Project breakdown:
 1. When we start a new project, we run the $ npm init command.
@@ -93,7 +93,7 @@ npm install gulp --save-dev
 --WRITING A GULP TASK--
 1. create a gulp.js file in the parent project directory
 2. place this at the top: var gulp = require('gulp'); --note: its standard practice for the variable name to be the same as the package name
-3. below require, write this:
+3. below require, an example of a task:
 gulp.task('myTask', function(){
   console.log('hello gulp');
 });
@@ -116,3 +116,87 @@ gulp.task('jsBrowserify', function() {
 1. Call the Browserify function and tell it which files to browserify.  This is done by passing in an object with a key 'entries'. The corresponding value is an array of file names. We tell it to pull in our front-end file only.  The backend file was taken care of by the require keyword in our pingpong-interface file when we wrote: var Calculator = require('./../js/pingpong.js').calculatorModule;
 2. We call bundle(), which is built into the Browserify package.
 3. We tell it to create a new file called app.js and put it into a new folder, which will be called 'build'.  This folder will eventually hold other code, so we tell gulp to create a js folder inside of it to store our browserfied JS.
+
+--Contatenation--
+# Consolidating multiple JS files into one. - drastically reduces load time.
+# npm install gulp-concat --save-dev
+# When files are concatenated, they are stored into a temporary folder called 'tmp'.
+# Globbing pattern uses the 'get all' asterisk (see below)
+gulp.task('concatInterface', function() {
+  return gulp.src(['./js/*-interface.js'])
+  .pipe(concat('allConcat.js'))
+  .pipe(gulp.dest('./tmp'));
+});
+The * is shorthand for saying 'grab all the files ending in -interface.js and concatenate and browserify all of them'.
+Moving forward, this will set the program up to do this automatically.
+
+--Minification--
+# Speeds up the rate at which your browser processes your program by removing extra characters, spacing, ect. and places your code within one line
+
+# npm install-uglify --save-dev
+
+# Add this to your gulpfile.js:
+
+var uglify = require('gulp-uglify');
+
+# Add this to app.js file:
+
+gulp.task("minifyScripts", ["jsBrowserify"], function(){
+  return gulp.src("./build/js/app.js")
+    .pipe(uglify())
+    .pipe(gulp.dest("./build/js"));
+});
+
+by running gulp minifyScripts in the terminal:
+This function will enable us to run minifyScripts, which triggers jsBrowserify, which triggers concatInterface
+
+--Build and Clean Tasks--
+# By seperating tasks for development and production, we'll need to specify which one we're referencing.  -Environment variables- help us with this.
+
+to do so we need to install gulp-util:
+
+npm install gulp-util --save-dev
+
+place this in your gulp.js file:
+var buildProduction = utilities.env.production;
+
+(place at the end of all tasks)
+gulp.task("build", function(){
+  if (buildProduction) {
+    gulp.start('minifyScripts');
+  } else {
+    gulp.start('jsBrowserify');
+  }
+});
+
+now we can run gulp build --production
+
+--Clean Tasks--
+to make sure we are using up to date versions of our files every time we build.  This also cleans up our environment before we make a build.
+
+npm install del --save-dev
+
+place inside of gulp.js file:
+
+var del = require('del');
+
+gulp.task("clean", function(){
+  return del(['build', 'tmp']);
+});
+
+we pass 'del' an array of paths to delete and it removes them.  Here, we're telling it to delete the entire build and tmp folders.  We'll put it right before the build task and call it automatically by making it a dependency of our build task.  Whether we're making a production or a development build, we will clean up first.
+
+gulp.task("build", ['clean'], function(){
+  if (buildProduction) {
+    gulp.start('minifyScripts');
+  } else {
+    gulp.start('jsBrowserify');
+  }
+});
+
+--JS-hint--
+the package, itself:
+$ npm install jshint --save-dev
+
+allows us to write a gulp task so it will automatically check code using linter
+$ npm install gulp-jshint --save-dev
