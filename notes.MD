@@ -1,19 +1,20 @@
 # We will create a Calculator object. pingPong will be a method that can be called on the Calculator object
 
 # Vocab:
-# flat file - what we've been writing our js in up to this point, on one file
-# Asset Pipeline - a organizational system in which files are prepared for the browser.  It will optimize and compile our project by completing the following tasks:
-# Taking multiple JS files and concatenating them (copy/paste them together into a single file)
-# Add features like checking our code for syntax errors when it concatenates, so that we're less likely to ship bugs.
+flat file - what we've been writing our js in up to this point, on one file
+Asset Pipeline - a organizational system in which files are prepared for the browser.  It will optimize and compile our project by completing the following tasks:
+1. Taking multiple JS files and concatenating them (copy/paste them together into a single file)
+2. Add features like checking our code for syntax errors when it concatenates, so that we're less likely to ship bugs.
 # The pipeline can robustly manage external dependencies like JQuery
-#
-# BROWSER LIMITATIONS:
-# No way to access the filesystem.  This is a security feature of web browsers. Once we build a pipeline, it needs to access the filesystem to read all of our individual JS files, and to write a single concatenated file.
-# The browser includes a lot of things we don't need, like the DOM.  Ideally, we'd have a slightly different JS environment for our asset pipeline than the browser.
 
-# RUNTIME ENVIRONMENT - Node.js - let's us run JS from the command line, gives us filesystem access, among others.
+--BROWSER LIMITATIONS:
+1. No way to access the filesystem.  This is a security feature of web browsers. Once we build a pipeline, it needs to access the filesystem to read all of our individual JS files, and to write a single concatenated file.
+2. The browser includes a lot of things we don't need, like the DOM.  Ideally, we'd have a slightly different JS environment for our asset pipeline than the browser.
 
-# NODE MODULES - linking together seperate JS files.
+# Vocab:
+RUNTIME ENVIRONMENT - Node.js - let's us run JS from the command line, gives us filesystem access, among others.
+
+NODE MODULES - linking together seperate JS files.
 
 -- FROM THE NINJA JS VIDEOS --
 
@@ -30,12 +31,12 @@ var adder = function(a,b) {
 
 var pi = 3.142;
 
-# module.exports.counter = counter;
-# module.exports.adder = adder;
-# module.exports.pi = pi;
-# module.exports = object
-# counter and adder are properties of the exports object
-# = counter and = adder are the variables containing the backend functions
+module.exports.counter = counter;
+module.exports.adder = adder;
+module.exports.pi = pi;
+module.exports = object
+counter and adder are properties of the exports object
+'= counter' and '= adder' are the variables containing the backend functions
 
 - in his app:
 
@@ -60,23 +61,25 @@ module.exports.adder = function(a,b) {
 module.exports.pi = 3.142;
 
 --OR--
-Use object literal notation:
+#Use object literal notation:
 
-#   module.exports = {
-#   counter: counter;
-#   adder: adder;
-#   pi: pi;
-# };
+module.exports = {
+counter: counter;
+adder: adder;
+pi: pi;
+};
 
---Npm-- from 'Introducing Npm and Gulp'
-# When starting a new project, run '$ npm init'
+--Npm-- 'Introducing Npm and Gulp'
+# When starting a new project, run:
+npm init
 # This creates a manifest file - where npm stores a list of packages needed for the project, along with which versions are needed.  kinda works like a grocery list for your project by keeping track of all the third party packages it needs to run.
 
 --GULP--
 # A JS package that runs development tasks for us.
 # Optimizes code and packages it up in a format the browser can understand.
 # It is in charge of managing other npm packages that we will download later.
-# Vocab: development dependency - only used in app development, not in production in the browser.
+# Vocab:
+Development dependency - only used in app development, not in production in the browser.
 # By seperating out dependencies for development vs. production, the production app can be smaller and faster.
 
 npm install gulp --save-dev
@@ -103,7 +106,9 @@ gulp.task('myTask', function(){
 # Run command in the top level of your project directory.
 # Remember to use JS lowerCamelCasing and place all require function calls at the top of the file so developers can see all dependencies at a glance.
 
-#Vocab - callback function: a function which is executed at a particular time, such as after a particular event completes.  
+#Vocab:
+Callback function: a function which is executed at a particular time, such as after a particular event completes.  
+
 --Gulp Task for pingpong--Build Folder--
 # Note: it is untidy to keep automatically-generated production files in the same place as our development files.  The code below is how we seperate the project production version inside a 'build' directory.
 gulp.task('jsBrowserify', function() {
@@ -123,17 +128,17 @@ gulp.task('jsBrowserify', function() {
 # When files are concatenated, they are stored into a temporary folder called 'tmp'.
 # Globbing pattern uses the 'get all' asterisk (see below)
 gulp.task('concatInterface', function() {
-  return gulp.src(['./js/*-interface.js'])
+  return gulp.src(['./js/* -interface.js']) -> (disregard space between * and - for markdown purposes here)
   .pipe(concat('allConcat.js'))
   .pipe(gulp.dest('./tmp'));
 });
-The * is shorthand for saying 'grab all the files ending in -interface.js and concatenate and browserify all of them'.
-Moving forward, this will set the program up to do this automatically.
+# The * is shorthand for saying 'grab all the files ending in -interface.js and concatenate and browserify all of them'.
+# Moving forward, this will set the program up to do this automatically.
 
 --Minification--
 # Speeds up the rate at which your browser processes your program by removing extra characters, spacing, ect. and places your code within one line
 
-# npm install-uglify --save-dev
+npm install-uglify --save-dev
 
 # Add this to your gulpfile.js:
 
@@ -147,20 +152,19 @@ gulp.task("minifyScripts", ["jsBrowserify"], function(){
     .pipe(gulp.dest("./build/js"));
 });
 
-by running gulp minifyScripts in the terminal:
-This function will enable us to run minifyScripts, which triggers jsBrowserify, which triggers concatInterface
+# by running gulp minifyScripts in the terminal: This function will enable us to run minifyScripts, which triggers jsBrowserify, which triggers concatInterface
 
 --Build and Clean Tasks--
 # By seperating tasks for development and production, we'll need to specify which one we're referencing.  -Environment variables- help us with this.
 
-to do so we need to install gulp-util:
+# To do so we need to install gulp-util:
 
 npm install gulp-util --save-dev
 
-place this in your gulp.js file:
+# place this in your gulp.js file:
 var buildProduction = utilities.env.production;
 
-(place at the end of all tasks)
+# Place at the end of all tasks
 gulp.task("build", function(){
   if (buildProduction) {
     gulp.start('minifyScripts');
@@ -169,14 +173,15 @@ gulp.task("build", function(){
   }
 });
 
-now we can run gulp build --production
+# now we can run:
+gulp build --production
 
 --Clean Tasks--
-to make sure we are using up to date versions of our files every time we build.  This also cleans up our environment before we make a build.
+# To make sure we are using up to date versions of our files every time we build.  This also cleans up our environment before we make a build.
 
 npm install del --save-dev
 
-place inside of gulp.js file:
+# Place inside of gulp.js file:
 
 var del = require('del');
 
@@ -184,7 +189,7 @@ gulp.task("clean", function(){
   return del(['build', 'tmp']);
 });
 
-we pass 'del' an array of paths to delete and it removes them.  Here, we're telling it to delete the entire build and tmp folders.  We'll put it right before the build task and call it automatically by making it a dependency of our build task.  Whether we're making a production or a development build, we will clean up first.
+# We pass 'del' an array of paths to delete and it removes them.  Here, we're telling it to delete the entire build and tmp folders.  We'll put it right before the build task and call it automatically by making it a dependency of our build task.  Whether we're making a production or a development build, we will clean up first.
 
 gulp.task("build", ['clean'], function(){
   if (buildProduction) {
@@ -195,8 +200,12 @@ gulp.task("build", ['clean'], function(){
 });
 
 --JS-hint--
-the package, itself:
+# the package, itself:
 $ npm install jshint --save-dev
 
-allows us to write a gulp task so it will automatically check code using linter
+# Allows us to write a gulp task so it will automatically check code using linter
 $ npm install gulp-jshint --save-dev
+
+# To run:
+
+gulp jshint
